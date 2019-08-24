@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>jQuery State Machine demo</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+	/*
+	
+    Classic turnstile example:
+	
+	 defaultState -      coinEvent -> handleCoin() - coinSuccessEvent - coinSuccessState
+	 defaultState -      coinEvent -> handleCoin() - coinErrorEvent   - coinErrorState
+	 coinErrorState -    coinEvent -> handleCoin() - coinSuccessEvent - coinSuccessState
+	 coinSuccessState -  pushEvent -> handlePush() - pushSuccessEvent - pushSuccessState
+	
+	 */
+	$(function() {
+
+		const turnstileStates = {
+			defaultState : function() {
+				$("#thankyou").hide();
+				$("#cointxt").val("");
+				$("#push").prop("disabled", true);
+				$("#cointxt").prop("disabled", false);
+				$("#turnstile_locked").show();
+				$("#turnstile_unlocked").hide();
+				$("#coinerrmsg").hide();
+			},
+			coinSuccessState : function() {
+				$("#turnstile_locked").hide();
+				$("#cointxt").prop("disabled", true);
+				$("#push").prop("disabled", false);
+				$("#coin").prop("disabled", true);
+				$("#turnstile_unlocked").show();
+				$("#coinerrmsg").hide();
+			},
+			coinErrorState : function() {
+				$("#thankyou").hide();
+				$("#cointxt").prop("disabled", false);
+				$("#push").prop("disabled", true);
+				$("#turnstile_locked").show();
+				$("#coinerrmsg").show();
+				$("#turnstile_unlocked").hide();
+			},
+			pushSuccessState : function() {
+				$("#thankyou").show();
+				$("#welcome").hide();
+				$("#cointxt").prop("disabled", true);
+				$("#turnstile_locked").hide();
+				$("#coin").prop("disabled", true);
+				$("#push").prop("disabled", true);
+				$("#turnstile_unlocked").hide();
+				$("#coinerrmsg").hide();
+			}
+		};
+
+		const turnstileEvents = {
+			coinEvent : {
+				handleCoin : function() {
+					if ($("#cointxt").val() > 0) {
+						return turnstileEvents.coinSuccessEvent;
+					} else {
+						return turnstileEvents.coinErrorEvent;
+					}
+				}
+			},
+			coinSuccessEvent : {
+				nextState : function() {
+					return turnstileStates.coinSuccessState();
+				}
+			},
+			coinErrorEvent : {
+				nextState : function() {
+					return turnstileStates.coinErrorState();
+				}
+			},
+			pushEvent : {
+				handlePush : function() {
+					return turnstileEvents.pushSuccessEvent;
+
+				}
+			},
+			pushSuccessEvent : {
+				nextState : function() {
+					return turnstileStates.pushSuccessState();
+				}
+			}
+		};
+
+        //handle page load event
+		turnstileStates.defaultState();
+
+        //handle coin event
+		$("#coin").click(function() {
+			return turnstileEvents.coinEvent.handleCoin().nextState();
+		});
+
+        //handle push event
+		$("#push").click(function() {
+			return turnstileEvents.pushEvent.handlePush().nextState();
+		});
+
+	});
+</script>
+</head>
+<body>
+	<blockquote>
+		<p id="welcome">Welcome to our Turnstile station!</p>
+		<p id="thankyou">Thank you for visiting our turnstile station,
+			good bye!</p>
+		<p id="turnstile_locked">Turnstile is locked - please drop coins
+			to unlock</p>
+		<p id="turnstile_unlocked">Turnstile is unlocked - please push and
+			enter</p>
+
+
+
+		<form name="ts" action="javascript:return false;">
+			<table>
+				<tr>
+					<td><input type="text" id="cointxt" name="cointxt" value=""
+						size="5">
+						<button name="coinbtn" type="submit" id="coin">Drop Coins</button>
+						<div>
+							&nbsp;<span id="coinerrmsg"><font color="red">Coin
+									must be greater than 0</font></span>
+						</div></td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>
+						<button id="push">Push</button>
+						<div>&nbsp;</div>
+					</td>
+				<tr>
+			</table>
+		</form>
+
+	</blockquote>
+</body>
+</html>
