@@ -5,11 +5,10 @@ The classic [turnstile example](https://en.wikipedia.org/wiki/Finite-state_machi
 
 This demo uses the following state transitions:<br />
 <br />
-`    defaultState -      coinEvent -> handleCoin() - coinSuccessEvent - coinSuccessState`<br />
-`    defaultState -      coinEvent -> handleCoin() - coinErrorEvent   - coinErrorState`<br />
-`    coinErrorState -    coinEvent -> handleCoin() - coinSuccessEvent - coinSuccessState`<br />
+`    defaultState     -  coinEvent -> handleCoin() - coinSuccessEvent - coinSuccessState`<br />
+`    defaultState     -  coinEvent -> handleCoin() - coinErrorEvent   - coinErrorState`<br />
+`    coinErrorState   -  coinEvent -> handleCoin() - coinSuccessEvent - coinSuccessState`<br />
 `    coinSuccessState -  pushEvent -> handlePush() - pushSuccessEvent - pushSuccessState`<br />
-
 
 If you like this project it would help if you could add a GitHub star at the top of this page.
 
