@@ -57,8 +57,8 @@
 
 		const turnstileEvents = {
 			coinEvent : {
-				handleCoin : function() {
-					if ($("#cointxt").val() > 0) {
+				handleCoin : function(e) {
+					if (e.data.coinval() > 0) {
 						return turnstileEvents.coinSuccessEvent;
 					} else {
 						return turnstileEvents.coinErrorEvent;
@@ -92,8 +92,8 @@
 		turnstileStates.defaultState();
 
         //handle coin event
-		$("#coin").click(function() {
-			return turnstileEvents.coinEvent.handleCoin().nextState();
+	    $("#coin").on("click",{ coinval : function(){return $("#cointxt").val();} },function(event) {
+			return turnstileEvents.coinEvent.handleCoin(event).nextState();
 		});
 
         //handle push event
@@ -116,7 +116,7 @@
 
 
 
-		<form name="ts" action="javascript:return false;">
+		<form name="ts" action="./" onsubmit="return false;" method="post">
 			<table>
 				<tr>
 					<td><input type="text" id="cointxt" name="cointxt" value=""
