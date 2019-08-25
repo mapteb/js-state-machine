@@ -65,27 +65,31 @@
 						return turnstileEvents.coinErrorEvent;
 					}
 				}
+                //nextState not needed for this event
 			},
 			coinSuccessEvent : {
 				nextState : function() {
 					return turnstileStates.coinSuccessState();
 				}
+                //no handlers are needed for this event
 			},
 			coinErrorEvent : {
 				nextState : function() {
 					return turnstileStates.coinErrorState();
 				}
+                //no handlers are needed for this event
 			},
 			pushEvent : {
 				handlePush : function() {
 					return turnstileEvents.pushSuccessEvent;
-
 				}
+                //nextState not needed for this event
 			},
 			pushSuccessEvent : {
 				nextState : function() {
 					return turnstileStates.pushSuccessState();
 				}
+                //no handlers are needed for this event
 			}
 		};
 
