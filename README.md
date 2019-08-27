@@ -10,5 +10,9 @@ This demo uses the following state transitions:<br />
 `    coinErrorState   -  coinEvent -> handleCoin() - coinSuccessEvent - coinSuccessState`<br />
 `    coinSuccessState -  pushEvent -> handlePush() - pushSuccessEvent - pushSuccessState`<br />
 
+More information on this project is at:<br/>
+https://dzone.com/articles/a-simple-javascript-state-machine
+
+
 If you like this project it would help if you could add a GitHub star at the top of this page.
 
