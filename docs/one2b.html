@@ -4,7 +4,7 @@
 <meta charset="ISO-8859-1">
 <meta name="description" content="https://github.com/mapteb/jquery-state-machine">
 <title>jQuery State Machine demo</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src='jquery-3.1.1.min.js'></script>
 <script>
 	/*
 	
@@ -69,31 +69,27 @@
 						return turnstileEvents.coinErrorEvent;
 					}
 				}
-                //nextState not needed for this event
 			},
 			coinSuccessEvent : {
 				nextState : function() {
 					return turnstileStates.coinSuccessState();
 				}
-                //no handlers are needed for this event
 			},
 			coinErrorEvent : {
 				nextState : function() {
 					return turnstileStates.coinErrorState();
 				}
-                //no handlers are needed for this event
 			},
 			pushEvent : {
 				handlePush : function() {
 					return turnstileEvents.pushSuccessEvent;
+
 				}
-                //nextState not needed for this event
 			},
 			pushSuccessEvent : {
 				nextState : function() {
 					return turnstileStates.pushSuccessState();
 				}
-                //no handlers are needed for this event
 			}
 		};
 
