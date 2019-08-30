@@ -16,9 +16,8 @@
 	 coinSuccessState -  pushEvent -> handlePush() - pushSuccessEvent - pushSuccessState
 	
 	 */
-	$(function() {
-
-		const turnstileStates = {
+	
+			const turnstileStates = {
 			defaultState : function() {
 				$("#state").text("defaultState");
 				$("#thankyou").hide();
@@ -96,6 +95,9 @@
                 //no handlers are needed for this event
 			}
 		};
+
+
+	$(function() {
 
         //handle page load event
 		turnstileStates.defaultState();
