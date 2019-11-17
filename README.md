@@ -5,6 +5,7 @@ A JavaScript State Machine implementation using jQuery
 The classic [turnstile example](https://en.wikipedia.org/wiki/Finite-state_machine) is used for this [demo](https://mapteb.github.io/js-state-machine/jqueryStateMachineDemo.html).
 
 This demo uses the following state transitions:
+
 | Initial State | Pre-Event | Process | Post-Event | Final State |
 | --- | --- | --- | --- | --- |
 | defaultState -> | coinEvent -> | handleCoin() -> | coinSuccessEvent -> | coinSuccessState |
