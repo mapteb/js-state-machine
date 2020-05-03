@@ -16,6 +16,8 @@ This demo uses the following state transitions:
 More information on this project is at:
 <https://dzone.com/articles/a-simple-javascript-state-machine>
 
-If you like this project it would help if you could add a GitHub star at the top of this page.
+## Realed Projects
+
+An alternative verson of this project that uses web components instead of jquery is at: https://github.com/mapteb/state-transitions-with-webcomponents
 
 An extension of this project to include server models is [js-state-machine-v2](https://github.com/mapteb/js-state-machine-v2)
