@@ -16,7 +16,7 @@ This demo uses the following state transitions:
 More information on this project is at:
 <https://dzone.com/articles/a-simple-javascript-state-machine>
 
-## Realed Projects
+## Related Projects
 
 An alternative verson of this project that uses web components instead of jquery is at: https://github.com/mapteb/state-transitions-with-webcomponents
 
